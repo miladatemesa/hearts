@@ -1,0 +1,23 @@
+{
+  "name": "@amoo-milad/eslint-plugin",
+  "version": "0.0.1",
+  "description": "eslint plugin for check export name and kebab case file name",
+  "keywords": [
+    "eslint-plugin",
+    "kebab-pascal"
+  ],
+  "author": "ALi Moslehi <alimoslehi96@gmail.com>",
+  "license": "UNLICENSED",
+  "main": "./lib/index.js",
+  "scripts": {},
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-output": "^3.0.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-security": "^1.7.1",
+    "prettier": "^3.0.3"
+  }
+}

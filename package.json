@@ -1,5 +1,21 @@
 {
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "ts-node -r tsconfig-paths/register code/src",
+    "format": "prettier --write --ignore-path .gitignore",
+    "lint": "eslint --ignore-path .gitignore code",
+    "lint:ci": "eslint-output",
+    "lint:fix": "eslint --ignore-path .gitignore --fix"
+  },
   "devDependencies": {
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
+  },
+  "workspaces": {
+    "packages": [
+      "tools/*"
+    ]
   }
 }
