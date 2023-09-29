@@ -13,7 +13,7 @@ export abstract class Trick<
 > implements ITrick<TTrick, TTable, TCard, TPlayers, TPlayer>
 {
   private readonly _playedCards: TCard[];
-  private highestCard: TCard;
+  private _highestCard: TCard;
   private _winner: TPlayer;
 
   public get isFirst(): boolean {
@@ -32,6 +32,10 @@ export abstract class Trick<
     return this._playedCards;
   }
 
+  protected get highestCard(): TCard {
+    return this._highestCard;
+  }
+
   public constructor(private readonly table: TTable) {
     this._playedCards = [];
   }
@@ -40,20 +44,21 @@ export abstract class Trick<
     if (this.isFinished) {
       throw new Error();
     }
+
+    this.checkCanAddCard(player, card);
+
     if (
-      this.highestCard &&
-      !card.isTypeOf(this.highestCard) &&
-      player.hasCardTypeOf(card.constructor)
+      !this._highestCard ||
+      card.isGreaterThan(this._highestCard, this.table)
     ) {
-      throw new Error('Wrong Move');
-    }
-    if (!this.highestCard || card.isGreaterThan(this.highestCard, this.table)) {
-      this.highestCard = card;
+      this._highestCard = card;
       this._winner = player;
     }
     this._playedCards.push(card);
     this.checkIsCompleted();
   }
+
+  protected abstract checkCanAddCard(player: TPlayer, card: TCard): void;
 
   private checkIsCompleted(): void {
     if (this.isFinished) {

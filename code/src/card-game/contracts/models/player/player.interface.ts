@@ -1,7 +1,6 @@
 import type { ITable } from '~/card-game/contracts/models/table/table.interface';
 import type { ICard } from '~/card-game/contracts/models/card/card.interface';
 import type { ITrick } from '~/card-game/contracts/models/trick/trick.interface';
-import type { Prototype } from '~/types/prototype/prototype.type';
 import type { IPlayers } from '~/card-game/contracts/models/player/players.interface';
 
 export interface IPlayer<
@@ -21,7 +20,7 @@ export interface IPlayer<
 
   has(card: TCard): boolean;
 
-  hasCardTypeOf<T extends TCard>(cardType: Prototype<T>): boolean;
+  hasCardTypeOf(card: TCard): boolean;
 
   setNextPlayer(player: TPlayer): void;
 }

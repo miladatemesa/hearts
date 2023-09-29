@@ -26,4 +26,17 @@ export class HeartsGameTrick
   public get containHearts(): boolean {
     return this.playedCards.some((card) => card instanceof HeartsGameHeart);
   }
+
+  protected checkCanAddCard(
+    player: IHeartsGamePlayer,
+    card: IHeartsGameCard,
+  ): void {
+    if (
+      this.highestCard &&
+      !card.isTypeOf(this.highestCard) &&
+      player.hasCardTypeOf(card)
+    ) {
+      throw new Error('Wrong Move');
+    }
+  }
 }
