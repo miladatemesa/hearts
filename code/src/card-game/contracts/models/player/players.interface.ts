@@ -14,7 +14,5 @@ export interface IPlayers<
 
   get firstPlayer(): TPlayer;
 
-  addPlayer(
-    player: TPlayer,
-  ): IPlayers<TPlayers, TPlayer, TTable, TTrick, TCard>;
+  with(player: TPlayer): TPlayers;
 }

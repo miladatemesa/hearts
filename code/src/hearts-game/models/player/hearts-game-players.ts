@@ -17,6 +17,10 @@ export class HeartsGamePlayers
   >
   implements IHeartsGamePlayers
 {
+  public static Create(): IHeartsGamePlayers {
+    return new this(4);
+  }
+
   public get loser(): IHeartsGamePlayer {
     let max = -1;
     let loser: IHeartsGamePlayer = null;

@@ -11,4 +11,6 @@ export interface ITable<
   TPlayer extends IPlayer<TPlayer, TPlayers, TTable, TTrick, TCard>,
 > {
   get playersCount(): number;
+
+  place(player: TPlayer, card: TCard): void;
 }

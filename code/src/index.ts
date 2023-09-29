@@ -10,8 +10,11 @@ const seyyed = HeartsGamePlayer.Named('seyyed');
 const milad = HeartsGamePlayer.Named('milad');
 const ali = HeartsGamePlayer.Named('ali');
 
-const players = new HeartsGamePlayers(4);
-players.addPlayer(amir).addPlayer(seyyed).addPlayer(milad).addPlayer(ali);
+const players = HeartsGamePlayers.Create()
+  .with(amir)
+  .with(seyyed)
+  .with(milad)
+  .with(ali);
 
 const deck = Deck.For(HeartsGameCards);
 

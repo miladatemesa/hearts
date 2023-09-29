@@ -17,11 +17,11 @@ export abstract class Players<
 
   public abstract get firstPlayer(): TPlayer;
 
-  public constructor(public readonly length: number) {
+  protected constructor(public readonly length: number) {
     this.count = 0;
   }
 
-  public addPlayer(player: TPlayer): this {
+  public with(player: TPlayer): TPlayers {
     if (this.count === this.length) {
       throw new Error('table is full');
     }
@@ -34,7 +34,7 @@ export abstract class Players<
     if (this.count === this.length) {
       player.setNextPlayer(this.root);
     }
-    return this;
+    return this as unknown as TPlayers;
   }
 
   public *[Symbol.iterator](): Iterator<TPlayer> {
