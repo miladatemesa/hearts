@@ -1,4 +1,4 @@
-import {Card} from "./Card";
+import {Card} from "./Cards";
 
 export default class Shuffler {
     public shuffle(cards: Card[]): Card[] {

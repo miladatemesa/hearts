@@ -1,6 +1,6 @@
 import Player from "./Player";
 import Shuffler from "./Shuffler";
-import {Deck} from "./Card";
+import {Deck} from "./Cards";
 
 export default class Dealer {
     public constructor(private shuffler: Shuffler) {

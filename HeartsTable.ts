@@ -1,6 +1,6 @@
 import Player from "./Player";
 import Dealer from "./Dealer";
-import {Card, Club, Deck} from "./Card";
+import {Card, Club, Deck} from "./Cards";
 import Trick from "./Trick";
 
 export default class HeartsTable {

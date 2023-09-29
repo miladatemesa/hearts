@@ -1,4 +1,4 @@
-import {Card} from "./Card";
+import {Card} from "./Cards";
 import Trick from "./Trick";
 
 export default class Player { // TODO chain
