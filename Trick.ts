@@ -1,5 +1,5 @@
 import Player from "./Player";
-import {Card} from "./Cards";
+import {Card, Heart} from "./Cards";
 
 export default class Trick {
     public playedCards: Card[] = [];
@@ -14,6 +14,14 @@ export default class Trick {
         if (this.playedCards.length > 4) {
             throw new Error();
         }
+        if (this.isAnyCardPlayed) {
+            if (card.constructor !== this.lead.constructor) {
+                if (card.player.hasCardTypeOf(card.constructor)) {
+                    throw new Error('Wrong Move')
+                }
+            }
+        }
+
         this.playedCards.push(card);
     }
 
@@ -21,8 +29,12 @@ export default class Trick {
         return this.playedCards.length === 4;
     }
 
+    public get lead(): Card {
+        return this.playedCards.at(0)
+    }
+
     public get highestCard() {
-        const lead = this.playedCards.at(0)
+        const lead = this.lead;
         return this.playedCards
             .filter((playedCard) => playedCard.constructor === lead.constructor)
             .sort((a: Card, b: Card) => a.rank - b.rank)
@@ -31,5 +43,13 @@ export default class Trick {
 
     public get winner(): Player {
         return this.highestCard.player;
+    }
+
+    public get isHeartPlayed(): boolean {
+        return this.playedCards.some((card) => card instanceof Heart);
+    }
+
+    public get isAnyCardPlayed(): boolean {
+        return this.playedCards.length !== 0;
     }
 }

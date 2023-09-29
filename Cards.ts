@@ -29,12 +29,14 @@ class Diamond extends Card {
 
 }
 
-class Heart extends Card {
+export class Heart extends Card {
 
 }
 
-class Spade extends Card {
-
+export class Spade extends Card {
+    static queen(): Spade {
+        return new Spade(12);
+    }
 }
 
 interface SuiteFactory<T> {

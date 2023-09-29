@@ -5,6 +5,7 @@ export default class Player { // TODO chain
     private hand: Card[] = [];
     private tricks: Trick[] = [];
     private name: string;
+    public nextPlayer: Player;
 
     constructor(name: string) {
         this.name = name;
@@ -21,5 +22,9 @@ export default class Player { // TODO chain
 
     public has(card: Card): boolean {
         return this.hand.some((cardAtHand: Card) => cardAtHand.equals(card))
+    }
+
+    public hasCardTypeOf(cardType: Function): boolean {
+        return this.hand.some((cardAtHand) => cardAtHand.constructor === cardType);
     }
 }
