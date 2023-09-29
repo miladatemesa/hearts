@@ -11,7 +11,7 @@ abstract class Suite<T> {
 
     protected abstract instantiate(rank: number): T;
 
-    getCards(): T[] {
+    public getCards(): T[] {
         return this.cards;
     }
 }

@@ -5,7 +5,7 @@ export abstract class Card {
     readonly rank: number;
     player: Player;
 
-    constructor(rank: number) {
+    public constructor(rank: number) {
         if (rank < 2 || rank > 14) {
             throw new Error('Invalid rank')
         }
@@ -13,11 +13,11 @@ export abstract class Card {
         this.rank = rank;
     }
 
-    assign(player: Player) {
+    public assign(player: Player) {
         this.player = player;
     }
 
-    equals(card: Card): boolean {
+    public equals(card: Card): boolean {
         return card.constructor == this.constructor && this.rank == card.rank;
     }
 }
@@ -50,7 +50,7 @@ export class Deck {
         ];
     }
 
-    pop(): Card {
+    public pop(): Card {
         return this.cards.pop()!;
     }
 }
