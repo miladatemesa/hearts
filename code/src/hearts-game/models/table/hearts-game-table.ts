@@ -31,15 +31,19 @@ export class HeartsGameTable
     player: IHeartsGamePlayer,
     card: IHeartsGameCard,
   ): void {
-    if (this.isFirst && card.equals(HeartsGameSpade.withRank(CardRank.Queen))) {
-      throw new Error('You can not use Queen of Spade at first!');
+    if (this.isFirst) {
+      if (card.equals(HeartsGameSpade.withRank(CardRank.Queen))) {
+        throw new Error('You can not use Queen of Spade at first!');
+      }
+      if (card instanceof HeartsGameHeart && !player.canPlayWithHeart) {
+        throw new Error('You can not use Heart at first!');
+      }
     }
     if (card instanceof HeartsGameHeart) {
       if (
-        !player.canPlayWithHeart &&
-        (this.isFirst ||
-          (this.currentTrick.isFirst &&
-            !this.tricks.some((trick) => trick.containHearts)))
+        this.currentTrick.isFirst &&
+        !this.tricks.some((trick) => trick.containHearts) &&
+        !player.canPlayWithHeart
       ) {
         throw new Error('You can not start with heart!');
       }
