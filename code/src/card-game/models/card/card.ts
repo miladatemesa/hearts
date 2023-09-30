@@ -4,6 +4,7 @@ import type { ITable } from '~/card-game/contracts/models/table/table.interface'
 import type { ITrick } from '~/card-game/contracts/models/trick/trick.interface';
 import type { IPlayers } from '~/card-game/contracts/models/player/players.interface';
 import type { IPlayer } from '~/card-game/contracts/models/player/player.interface';
+import type { CardType } from '~/card-game/contracts/enums/card-type.enum';
 
 export abstract class Card<
   TCard extends Card<TCard, TTrick, TTable, TPlayers, TPlayer>,
@@ -22,15 +23,18 @@ export abstract class Card<
     this.rank = rank;
   }
 
-  public isTypeOf(this: TCard, card: TCard): boolean {
-    return card.constructor === this.constructor;
-  }
-
-  public isGreaterThan(this: TCard, card: TCard): boolean {
-    return this.isTypeOf(card) && card.rank > this.rank;
+  public isTypeOf(card: TCard): boolean {
+    return card && card.constructor === this.constructor;
   }
 
   public equals(this: TCard, card: TCard): boolean {
-    return card === this;
+    return this.isTypeOf(card) && this.rank === card.rank;
   }
+
+  public abstract isGreaterThan(
+    card: TCard,
+    table: ITable<TTable, TTrick, TCard, TPlayers, TPlayer>,
+  ): boolean;
+
+  public abstract getType(): CardType;
 }
