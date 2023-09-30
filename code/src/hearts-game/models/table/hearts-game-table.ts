@@ -23,7 +23,7 @@ export class HeartsGameTable
     return new this(players);
   }
 
-  private get isStart(): boolean {
+  private get isFirst(): boolean {
     return this.tricks.length === 1;
   }
 
@@ -31,15 +31,15 @@ export class HeartsGameTable
     player: IHeartsGamePlayer,
     card: IHeartsGameCard,
   ): void {
-    if (this.isStart && card.equals(HeartsGameSpade.withRank(CardRank.Queen))) {
+    if (this.isFirst && card.equals(HeartsGameSpade.withRank(CardRank.Queen))) {
       throw new Error('You can not use Queen of Spade at first!');
     }
     if (card instanceof HeartsGameHeart) {
       if (
-        this.isStart ||
-        (this.currentTrick.isFirst &&
-          !this.tricks.some((trick) => trick.containHearts) &&
-          !player.canPlayWithHeart)
+        !player.canPlayWithHeart &&
+        (this.isFirst ||
+          (this.currentTrick.isFirst &&
+            !this.tricks.some((trick) => trick.containHearts)))
       ) {
         throw new Error('You can not start with heart!');
       }
