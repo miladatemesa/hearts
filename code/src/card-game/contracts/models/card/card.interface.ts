@@ -13,10 +13,7 @@ export interface ICard<
 > {
   isTypeOf(card: TCard): boolean;
 
-  isGreaterThan(
-    card: TCard,
-    table: ITable<TTable, TTrick, TCard, TPlayers, TPlayer>,
-  ): boolean;
+  isGreaterThan(card: TCard): boolean;
 
   equals(card: TCard): boolean;
 

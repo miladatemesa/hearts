@@ -39,8 +39,4 @@ export abstract class HeartsGameCard
   public get score(): number {
     return 0;
   }
-
-  public isGreaterThan(card: HeartsGameCard): boolean {
-    return this.isTypeOf(card) && card.rank > this.rank;
-  }
 }

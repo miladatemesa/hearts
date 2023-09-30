@@ -39,4 +39,8 @@ export class HeartsGameTrick
       throw new Error('Wrong Move');
     }
   }
+
+  protected isHighestCard(card: IHeartsGameCard): boolean {
+    return card.isGreaterThan(this.highestCard);
+  }
 }

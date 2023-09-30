@@ -31,10 +31,9 @@ export abstract class Card<
     return this.isTypeOf(card) && this.rank === card.rank;
   }
 
-  public abstract isGreaterThan(
-    card: TCard,
-    table: ITable<TTable, TTrick, TCard, TPlayers, TPlayer>,
-  ): boolean;
+  public isGreaterThan(card: TCard): boolean {
+    return this.isTypeOf(card) && card.rank > this.rank;
+  }
 
   public abstract getType(): CardType;
 }

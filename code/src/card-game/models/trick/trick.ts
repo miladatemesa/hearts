@@ -47,10 +47,7 @@ export abstract class Trick<
 
     this.checkCanAddCard(player, card);
 
-    if (
-      !this._highestCard ||
-      card.isGreaterThan(this._highestCard, this.table)
-    ) {
+    if (!this._highestCard || this.isHighestCard(card)) {
       this._highestCard = card;
       this._winner = player;
     }
@@ -59,6 +56,8 @@ export abstract class Trick<
   }
 
   protected abstract checkCanAddCard(player: TPlayer, card: TCard): void;
+
+  protected abstract isHighestCard(card: TCard): boolean;
 
   private checkIsCompleted(): void {
     if (this.isFinished) {
