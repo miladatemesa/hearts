@@ -39,14 +39,13 @@ export class HeartsGameTable
         throw new Error('You can not use Heart at first!');
       }
     }
-    if (card instanceof HeartsGameHeart) {
-      if (
-        this.currentTrick.isFirst &&
-        !this.tricks.some((trick) => trick.containHearts) &&
-        !player.canPlayWithHeart
-      ) {
-        throw new Error('You can not start with heart!');
-      }
+    if (
+      this.currentTrick.isFirst &&
+      card instanceof HeartsGameHeart &&
+      !this.tricks.some((trick) => trick.containHearts) &&
+      !player.canPlayWithHeart
+    ) {
+      throw new Error('You can not start with heart!');
     }
   }
 
